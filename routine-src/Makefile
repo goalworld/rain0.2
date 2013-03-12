@@ -1,6 +1,6 @@
 BUILD=../build/
 INC_DIR=-I../rain-src/include
-CFLAGS=-Wall -O -g -Wl,-E -pg
+CFLAGS=-Wall -O -g -Wl,-E -pg #-E, --export-dynamic        Export all dynamic symbols
 SHARED=-fPIC -shared
 CC = gcc
 all:$(BUILD)libtest.so
