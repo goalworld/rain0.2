@@ -16,7 +16,6 @@ struct rain_tcp{
 	rain_ctx_t * ctx;
 	wod_cycle_buffer_t rdbuf;
 	int err;
-	int sz;
 	rain_event_t rev;
 	rain_event_t wev;
 	int ref;

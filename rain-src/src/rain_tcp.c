@@ -28,6 +28,9 @@ static rain_tcp_t *
 rain_get_new_tcp(int fd)
 {
 	rain_tcp_t * tcp;
+	if(fd >= TCP_SZ ){
+		return NULL;
+	}
 	rain_mutex_lock(&tcp_mtx);
 	tcp = tcp_map[fd];
 	assert(tcp == NULL);
@@ -151,6 +154,8 @@ rain_tcp_t * rain_tcp_listen(struct rain_ctx *ctx,const char *ip,int port)
 	}
 	wod_net_noblock(sock,1);
 	rain_tcp_t *tcp = rain_get_new_tcp(sock);
+	assert(tcp);
+
 	tcp->ctx = ctx;
 	tcp->sock = sock;
 	tcp->rev.ev_data.handle = sock;
@@ -172,6 +177,7 @@ rain_tcp_t * rain_tcp_accept(struct rain_ctx *ctx,rain_tcp_t *listcp)
 	}
 	wod_net_noblock(sock,1);
 	rain_tcp_t *tcp = rain_get_new_tcp(sock);
+	assert(tcp);
 	tcp->ctx = ctx;
 	tcp->sock = sock;
 	tcp->rev.ev_data.handle = sock;
@@ -193,7 +199,7 @@ rain_tcp_t * rain_tcp_connect(struct rain_ctx *ctx,const char *ip,int port)
 	}
 	wod_net_noblock(sock,1);
 	rain_tcp_t *tcp = rain_get_new_tcp(sock);
-
+	assert(tcp);
 	tcp->ctx = ctx;
 	tcp->sock = sock;
 	tcp->rev.ev_data.handle = sock;
