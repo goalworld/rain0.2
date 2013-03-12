@@ -10,7 +10,7 @@
 #include "errno.h"
 #include <stdlib.h>
 #include "rain_mutex.h"
-
+#include <assert.h>
 /**
  * return>0:缓冲区空了
  * return=0:读到结尾。
