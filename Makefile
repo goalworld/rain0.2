@@ -1,4 +1,5 @@
 all:
+	@mkdir -p build
 	@cd ./rain-src/ && make all
 	@cd ./routine-src/ && make all
 clean:
