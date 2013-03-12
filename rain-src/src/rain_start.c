@@ -21,6 +21,7 @@
 #include "rain_loger.h"
 #include "rain_msgqueue.h"
 #include "rain_event.h"
+#include "rain_tcp.h"
 #include <wod_time.h>
 static int rain_dipatch_routine(void);
 static void * worker(void *arg);
@@ -41,6 +42,7 @@ main(int argc,char *argv[])
 	free(dir);
 	rain_event_init();
 	rain_timer_init();
+	rain_tcp_init();
 	rain_life_queue_init();
 	rain_message_queue_init();
 	sig_init();
